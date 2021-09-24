@@ -12,8 +12,25 @@ namespace Tester_CarouselView.AppEngine
 
         public AppEngine()
         {
+            prp_CategoryFeatures = new AppEngineClasses.CategoryFeatures(this);
 
         }
+
+
+        private AppEngineClasses.CategoryFeatures prp_CategoryFeatures;
+        /// <summary>
+        /// Main class for work with categories.
+        /// </summary>
+        public AppEngineClasses.CategoryFeatures CategoryFeatures
+        {
+            get
+            {
+                return prp_CategoryFeatures;
+            }
+        }
+
+
+
 
     }
 }
