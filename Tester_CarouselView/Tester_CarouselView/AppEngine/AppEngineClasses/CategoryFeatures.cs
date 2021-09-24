@@ -49,11 +49,48 @@ namespace Tester_CarouselView.AppEngine.AppEngineClasses
                 OnPropertyChanged("Items");
             }
         }
+
+        private cls_Category prp_SelectedCategory;
+        /// <summary>
+        /// Selected category.
+        /// </summary>
+        public cls_Category SelectedCategory
+        {
+            get
+            {
+                return prp_SelectedCategory;
+            }
+            set
+            {
+                prp_SelectedCategory = value;
+                OnPropertyChanged("SelectedCategory");
+            }
+        }
+
+        /// <summary>
+        /// Set category and calls UI change.
+        /// </summary>
+        public void SetCategory(cls_Category u_Category)
+        {
+            try
+            {
+                SelectedCategory = u_Category;
+
+                Console.WriteLine("SetCategory: " + u_Category.Name);
+
+                // Vyvolať udalosť   
+                //this.AppEngine.LUKULNavigation.OnUserAction(new LUKUL.AppEngine.AppNavigation.cls_UserActionEventArgs(AppNavigation.cls_UserActionEventArgs.enm_UserAction.SelectMenuCategories));
+            }
+            catch (Exception)
+            {
+            }
+        }
+
         #endregion
 
         #region PUBLIC METHODS
 
-        
+
 
         /// <summary>
         /// Returns category based on name.

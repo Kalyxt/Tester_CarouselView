@@ -17,6 +17,8 @@ namespace Tester_CarouselView
 
             Application.Current.MainPage = new NavigationPage(new Tester_CarouselView.MainPage(_AppEngine));
 
+            this._AppEngine.AppNavigation.Navigation = this.MainPage.Navigation;
+
         }
 
         protected override void OnStart()

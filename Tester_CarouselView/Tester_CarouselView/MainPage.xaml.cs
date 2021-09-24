@@ -23,11 +23,7 @@ namespace Tester_CarouselView
         {
             // Open TabbedPage
 
-            Tester_CarouselView.UI.NavigationPages.StockTabbedPage _StockTabbedPage;
-
-            _StockTabbedPage = new UI.NavigationPages.StockTabbedPage(_AppEngine);
-
-            this.Navigation.PushAsync(_StockTabbedPage);
+            this._AppEngine.AppNavigation.GoPage(Tester_CarouselView.AppEngine.AppNavigation.enm_Tester_PageNumbers.Stock_Categories);
         }
     }
 }

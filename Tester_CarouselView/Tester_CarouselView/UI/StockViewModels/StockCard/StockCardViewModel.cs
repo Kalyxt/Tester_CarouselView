@@ -51,6 +51,17 @@ namespace Tester_CarouselView.UI.StockViewModels.StockCard
 
         #region PROPERTIES
 
+        /// <summary>
+        /// Name of the active category.
+        /// </summary>
+        public string ActiveCategoryName
+        {
+            get
+            {
+                return this.AppEngine.CategoryFeatures?.SelectedCategory?.Name;
+            }
+        }
+
         private ObservableCollection<Tester_CarouselView.AppEngine.AppEngineClasses.cls_Category> prp_Category_Items;
         /// <summary>
         /// Category list.

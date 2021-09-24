@@ -9,12 +9,23 @@
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" RowSpacing="10" Padding="0,15,0,0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Text="{Binding ActiveCategoryName}" HorizontalOptions="Start" VerticalOptions="Center" FontSize="20" Padding="10,0,0,0" />
+            </Grid>
+            
             <!--Categories-->
             <CarouselView x:Name="fro_CarouselView_Categories"
-                          Grid.Row="0"
+                          CurrentItemChanged="fro_CarouselView_Categories_CurrentItemChanged"
+                          Grid.Row="1"
                           ItemsSource="{Binding Category_Items}"
                           IndicatorView="fro_IndicatorView_Categories"
                           VerticalScrollBarVisibility="Never" 
@@ -57,7 +68,7 @@
             </CarouselView>
 
             <!--Position of the category in list-->
-            <IndicatorView x:Name="fro_IndicatorView_Categories" Grid.Row="1" IndicatorColor="LightGray" SelectedIndicatorColor="Green" HorizontalOptions="Center" />
+            <IndicatorView x:Name="fro_IndicatorView_Categories" Grid.Row="2" IndicatorColor="LightGray" SelectedIndicatorColor="Green" HorizontalOptions="Center" />
 
         </Grid>
     </ContentPage.Content>

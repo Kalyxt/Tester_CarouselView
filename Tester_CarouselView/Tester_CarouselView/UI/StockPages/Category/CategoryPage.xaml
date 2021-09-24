@@ -5,7 +5,9 @@
              NavigationPage.HasNavigationBar="False"
              xmlns:local="clr-namespace:Tester_CarouselView.UI.StockViewModels.Category"
 			 x:DataType="local:CategoryViewModel"
-             xmlns:AppEngineClasses="clr-namespace:Tester_CarouselView.AppEngine.AppEngineClasses">
+             xmlns:AppEngineClasses="clr-namespace:Tester_CarouselView.AppEngine.AppEngineClasses"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Name="Categories">
 
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" RowSpacing="10" Padding="0,15,0,0">
@@ -25,7 +27,7 @@
                     <DataTemplate x:DataType="AppEngineClasses:cls_Category">
                         <ViewCell>
                             <ViewCell.View>
-                                <Grid Margin="5">
+                                <Grid Margin="5" xct:TouchEffect.Command="{Binding Source={x:Reference Categories}, Path=BindingContext.CategoryTouchUpCommand}"  xct:TouchEffect.CommandParameter="{Binding .}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>

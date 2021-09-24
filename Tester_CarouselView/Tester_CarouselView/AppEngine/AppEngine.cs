@@ -16,11 +16,26 @@ namespace Tester_CarouselView.AppEngine
 
             prp_StockCardFeatures = new AppEngineClasses.StockCardFeatures(this);
 
+            prp_AppNavigation = new AppNavigation(this);
+
             // Load data of classes.
             Load();
         }
 
         #region PROPERTIES
+
+        private Tester_CarouselView.AppEngine.AppNavigation prp_AppNavigation;
+        /// <summary>
+        /// Class for navigation in TabbedPage
+        /// </summary>
+        public Tester_CarouselView.AppEngine.AppNavigation AppNavigation
+        {
+            get
+            {
+                return prp_AppNavigation;
+            }
+        }
+
         private AppEngineClasses.CategoryFeatures prp_CategoryFeatures;
         /// <summary>
         /// Main class for work with categories.

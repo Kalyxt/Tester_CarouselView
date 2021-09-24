@@ -15,6 +15,7 @@ namespace Tester_CarouselView.UI.StockViewModels.Category
         #region COMMANDS
         public ICommand BackCommand { get; private set; }
 
+        public ICommand CategoryTouchUpCommand { get; set; }
         #endregion
 
         #region CONSTRUCTOR
@@ -29,7 +30,7 @@ namespace Tester_CarouselView.UI.StockViewModels.Category
             {
                 _Page = u_Page;
 
-                // MenuCategory items
+                // Category items
                 prp_Category_Items = this.AppEngine.CategoryFeatures.Items;
 
                 // prepare commands
@@ -102,6 +103,28 @@ namespace Tester_CarouselView.UI.StockViewModels.Category
         {
 
             BackCommand = new Command(async () => await GoBack());
+
+            CategoryTouchUpCommand = new Command<Tester_CarouselView.AppEngine.AppEngineClasses.cls_Category>(async (q) => await Task_CategoryTouchUpCommand(q));
+        }
+
+        /// <summary>
+        /// Otvorí page s ponukou jedál a nastaví vybratú kategóriu.
+        /// </summary>
+        /// <returns></returns>
+        private async Task Task_CategoryTouchUpCommand(Tester_CarouselView.AppEngine.AppEngineClasses.cls_Category u_Category)
+        {
+            try
+            {
+
+                // Nastaviť novú kategóriu.
+                this.AppEngine.CategoryFeatures.SetCategory(u_Category);
+
+                await this.AppEngine.AppNavigation.GoPage(Tester_CarouselView.AppEngine.AppNavigation.enm_Tester_PageNumbers.Stock_StockCards, u_Animation: false);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         #endregion
