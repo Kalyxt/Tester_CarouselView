@@ -6,11 +6,17 @@ namespace Tester_CarouselView
 {
     public partial class App : Application
     {
+
+        Tester_CarouselView.AppEngine.AppEngine _AppEngine;
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            _AppEngine = new AppEngine.AppEngine();
+
+            Application.Current.MainPage = new NavigationPage(new Tester_CarouselView.MainPage(_AppEngine));
+
         }
 
         protected override void OnStart()

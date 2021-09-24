@@ -10,7 +10,7 @@ namespace Tester_CarouselView
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        public MainPage(Tester_CarouselView.AppEngine.AppEngine u_AppEngine)
         {
             InitializeComponent();
         }
