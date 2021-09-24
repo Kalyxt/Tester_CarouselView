@@ -2,12 +2,43 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tester_CarouselView.UI.StockPages.Category.CategoryPage"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             xmlns:local="clr-namespace:Tester_CarouselView.UI.StockViewModels.Category"
+			 x:DataType="local:CategoryViewModel"
+             xmlns:AppEngineClasses="clr-namespace:Tester_CarouselView.AppEngine.AppEngineClasses">
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid HorizontalOptions="FillAndExpand" RowSpacing="10" Padding="0,15,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--Categories-->
+            <ListView Grid.Row="0"
+                      x:Name="fro_ListView_Categories"
+                      VerticalOptions="FillAndExpand"
+                      HorizontalOptions="FillAndExpand"
+                      SelectionMode="None"
+                      ItemsSource="{Binding Category_Items}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="AppEngineClasses:cls_Category">
+                        <Grid Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" 
+                                   FontSize="15"
+                                   Text="{Binding Name}"
+                                   VerticalOptions="Center"
+                                   HorizontalTextAlignment="Center"
+                                   MaxLines="2"/>
+
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

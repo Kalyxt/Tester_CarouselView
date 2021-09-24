@@ -31,7 +31,8 @@ namespace Tester_CarouselView.AppEngine.AppEngineClasses
         /// <summary>Name of the StockCard.</summary>
         public string Name { get; set; }
 
-
+        /// <summary>Name of the category in which stockcard is.</summary>
+        public string Category { get; set; }
         #endregion
 
         #region EVENTS

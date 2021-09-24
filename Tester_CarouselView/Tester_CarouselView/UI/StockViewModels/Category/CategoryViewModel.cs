@@ -30,12 +30,12 @@ namespace Tester_CarouselView.UI.StockViewModels.Category
                 _Page = u_Page;
 
                 // MenuCategory items
-                prp_MenuCategory_Items = this.AppEngine.CategoryFeatures.Items;
+                prp_Category_Items = this.AppEngine.CategoryFeatures.Items;
 
                 // prepare commands
                 InitializeCommands();
 
-                this.AppEngine.CategoryFeatures.PropertyChanged += eh_MenuCategory_PropertyChanged;
+                this.AppEngine.CategoryFeatures.PropertyChanged += eh_Category_PropertyChanged;
 
 
             }
@@ -54,20 +54,20 @@ namespace Tester_CarouselView.UI.StockViewModels.Category
 
         #region PROPERTIES
 
-        private ObservableCollection<Tester_CarouselView.AppEngine.AppEngineClasses.cls_Category> prp_MenuCategory_Items;
+        private ObservableCollection<Tester_CarouselView.AppEngine.AppEngineClasses.cls_Category> prp_Category_Items;
         /// <summary>
         /// Category list.
         /// </summary>
-        public ObservableCollection<Tester_CarouselView.AppEngine.AppEngineClasses.cls_Category> MenuCategory_Items
+        public ObservableCollection<Tester_CarouselView.AppEngine.AppEngineClasses.cls_Category> Category_Items
         {
             get
             {
-                return prp_MenuCategory_Items;
+                return prp_Category_Items;
             }
             set
             {
-                prp_MenuCategory_Items = value;
-                OnPropertyChanged("MenuCategory_Items");
+                prp_Category_Items = value;
+                OnPropertyChanged("Category_Items");
             }
         }
 
@@ -112,14 +112,14 @@ namespace Tester_CarouselView.UI.StockViewModels.Category
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void eh_MenuCategory_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void eh_Category_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
 
-                prp_MenuCategory_Items = this.AppEngine.CategoryFeatures.Items;
+                prp_Category_Items = this.AppEngine.CategoryFeatures.Items;
 
-                OnPropertyChanged("MenuCategory_Items");
+                OnPropertyChanged("Category_Items");
 
                 await Task.Delay(0);
             });
@@ -144,7 +144,7 @@ namespace Tester_CarouselView.UI.StockViewModels.Category
                     }
 
                     // Remove event handlers
-                    this.AppEngine.CategoryFeatures.PropertyChanged -= eh_MenuCategory_PropertyChanged;
+                    this.AppEngine.CategoryFeatures.PropertyChanged -= eh_Category_PropertyChanged;
                 }
                 catch (Exception)
                 {

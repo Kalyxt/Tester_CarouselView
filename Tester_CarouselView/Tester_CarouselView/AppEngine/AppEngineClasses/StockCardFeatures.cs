@@ -6,13 +6,10 @@ using System.Text;
 
 namespace Tester_CarouselView.AppEngine.AppEngineClasses
 {
-    /// <summary>
-    /// Contains list of categories and functions to work and edit categories.
-    /// </summary>
-    public class CategoryFeatures : IDisposable, INotifyPropertyChanged
+    public class StockCardFeatures : IDisposable, INotifyPropertyChanged
     {
 
-        public CategoryFeatures(AppEngine u_AppEngine)
+        public StockCardFeatures(AppEngine u_AppEngine)
         {
             prp_AppEngine = u_AppEngine;
         }
@@ -33,11 +30,11 @@ namespace Tester_CarouselView.AppEngine.AppEngineClasses
         }
 
 
-        private ObservableCollection<cls_Category> prp_Items;
+        private ObservableCollection<cls_StockCard> prp_Items;
         /// <summary>
         /// Category list.
         /// </summary>
-        public ObservableCollection<cls_Category> Items
+        public ObservableCollection<cls_StockCard> Items
         {
             get
             {
@@ -54,49 +51,18 @@ namespace Tester_CarouselView.AppEngine.AppEngineClasses
         #region PUBLIC METHODS
 
         /// <summary>
-        /// Load categories to list.
+        /// Load stockCards to list.
         /// </summary>
         public void Load()
         {
             try
             {
 
-                if (Items == null)
-                {
-                    this.Items = new ObservableCollection<cls_Category>();
-                }
-                else
-                {
-                    this.Items.Clear();
-                }
 
-                cls_Category tmp_Category;
-                tmp_Category = new cls_Category(this.AppEngine);
-                tmp_Category.Name = "Cars";
-                this.Items.Add(tmp_Category);
 
-                tmp_Category = new cls_Category(this.AppEngine);
-                tmp_Category.Name = "Bikes";
-                this.Items.Add(tmp_Category);
-
-                tmp_Category = new cls_Category(this.AppEngine);
-                tmp_Category.Name = "Planes";
-                this.Items.Add(tmp_Category);
-
-                tmp_Category = new cls_Category(this.AppEngine);
-                tmp_Category.Name = "Helicopters";
-                this.Items.Add(tmp_Category);
-
-                tmp_Category = new cls_Category(this.AppEngine);
-                tmp_Category.Name = "Boats";
-                this.Items.Add(tmp_Category);
-
-                tmp_Category = new cls_Category(this.AppEngine);
-                tmp_Category.Name = "Rockets";
-                this.Items.Add(tmp_Category);
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -164,6 +130,7 @@ namespace Tester_CarouselView.AppEngine.AppEngineClasses
         }
 
         #endregion
+
 
     }
 }

@@ -18,20 +18,22 @@ namespace Tester_CarouselView.UI.StockPages.StockCard
 
         #region FIELDS
 
-        Tester_CarouselView.UI.StockViewModels.StockCard.StockCardViewModel _StockCardViewModel;
+        Tester_CarouselView.UI.StockViewModels.StockCard.StockCardViewModel _StockCardViewModel = null;
 
-        private Tester_CarouselView.AppEngine.AppEngine _AppEngine;
+        private Tester_CarouselView.AppEngine.AppEngine _AppEngine = null;
 
         #endregion
 
         public StockCardPage(Tester_CarouselView.AppEngine.AppEngine u_AppEngine)
         {
             InitializeComponent();
+
+            _AppEngine = u_AppEngine;
+
+            _StockCardViewModel = new StockViewModels.StockCard.StockCardViewModel(this,_AppEngine);
+
+            this.BindingContext = _StockCardViewModel;
         }
-
-
-
-
 
 
         #region IDisposable

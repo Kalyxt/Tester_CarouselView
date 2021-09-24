@@ -34,6 +34,8 @@ namespace Tester_CarouselView.UI.StockPages.Category
 
             this.BindingContext = _CategoryViewModel;
 
+            
+
         }
 
 
@@ -50,7 +52,7 @@ namespace Tester_CarouselView.UI.StockPages.Category
                     if (disposing)
                     {
                         this._CategoryViewModel.Dispose();
-
+                        
                     }
 
                     // Odmapovať eventy

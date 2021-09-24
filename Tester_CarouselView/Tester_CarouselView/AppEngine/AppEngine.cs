@@ -14,9 +14,13 @@ namespace Tester_CarouselView.AppEngine
         {
             prp_CategoryFeatures = new AppEngineClasses.CategoryFeatures(this);
 
+            prp_StockCardFeatures = new AppEngineClasses.StockCardFeatures(this);
+
+            // Load data of classes.
+            Load();
         }
 
-
+        #region PROPERTIES
         private AppEngineClasses.CategoryFeatures prp_CategoryFeatures;
         /// <summary>
         /// Main class for work with categories.
@@ -29,8 +33,35 @@ namespace Tester_CarouselView.AppEngine
             }
         }
 
+        private AppEngineClasses.StockCardFeatures prp_StockCardFeatures;
+        /// <summary>
+        /// Main class for work with stockcards.
+        /// </summary>
+        public AppEngineClasses.StockCardFeatures StockCardFeatures
+        {
+            get
+            {
+                return prp_StockCardFeatures;
+            }
+        }
+
+        #endregion
 
 
+        #region PRIVATE METHODS
+
+        /// <summary>
+        /// Calls load methods of data classes.
+        /// </summary>
+        private void Load()
+        {
+            // Load category data.
+            CategoryFeatures.Load();
+
+
+        }
+
+        #endregion
 
     }
 }
