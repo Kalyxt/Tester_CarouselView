@@ -53,6 +53,49 @@ namespace Tester_CarouselView.AppEngine.AppEngineClasses
 
         #region PUBLIC METHODS
 
+        
+
+        /// <summary>
+        /// Returns category based on name.
+        /// </summary>
+        public Tester_CarouselView.AppEngine.AppEngineClasses.cls_Category GetCategory(string u_Name)
+        {
+            try
+            {
+                if (u_Name == string.Empty)
+                {
+                    return null;
+                }
+
+                if (this.Items == null)
+                {
+                    return null;
+                }
+
+                if (this.Items.Count == 0)
+                {
+                    return null;
+                }
+
+                foreach (Tester_CarouselView.AppEngine.AppEngineClasses.cls_Category e_Category in this.Items)
+                {
+                    if (string.Compare(e_Category.Name, u_Name) == 0)
+                    {
+                        // Found
+                        return e_Category;
+                    }
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                return null;
+            }
+        }
+
         /// <summary>
         /// Load categories to list.
         /// </summary>
@@ -81,10 +124,6 @@ namespace Tester_CarouselView.AppEngine.AppEngineClasses
 
                 tmp_Category = new cls_Category(this.AppEngine);
                 tmp_Category.Name = "Planes";
-                this.Items.Add(tmp_Category);
-
-                tmp_Category = new cls_Category(this.AppEngine);
-                tmp_Category.Name = "Helicopters";
                 this.Items.Add(tmp_Category);
 
                 tmp_Category = new cls_Category(this.AppEngine);

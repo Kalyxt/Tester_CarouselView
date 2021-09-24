@@ -26,11 +26,13 @@ namespace Tester_CarouselView.UI.StockViewModels.StockCard
         {
             try
             {
-                _Page = u_Page;
+                // MenuCategory items
+                prp_Category_Items = this.AppEngine.CategoryFeatures.Items;
 
-
-                // Prepare commands
+                // prepare commands
                 InitializeCommands();
+
+                this.AppEngine.CategoryFeatures.PropertyChanged += eh_Category_PropertyChanged;
 
 
             }
@@ -49,23 +51,44 @@ namespace Tester_CarouselView.UI.StockViewModels.StockCard
 
         #region PROPERTIES
 
-        private ObservableCollection<Tester_CarouselView.AppEngine.AppEngineClasses.cls_StockCard> prp_StockCard_Items;
+        private ObservableCollection<Tester_CarouselView.AppEngine.AppEngineClasses.cls_Category> prp_Category_Items;
         /// <summary>
-        /// Stockcard list.
+        /// Category list.
         /// </summary>
-        public ObservableCollection<Tester_CarouselView.AppEngine.AppEngineClasses.cls_StockCard> StockCard_Items
+        public ObservableCollection<Tester_CarouselView.AppEngine.AppEngineClasses.cls_Category> Category_Items
         {
             get
             {
-                return prp_StockCard_Items;
+                return prp_Category_Items;
             }
             set
             {
-                prp_StockCard_Items = value;
-                OnPropertyChanged("StockCard_Items");
+                prp_Category_Items = value;
+                OnPropertyChanged("Category_Items");
             }
         }
 
+
+        #endregion
+
+        #region EVENTS
+        /// <summary>
+        /// Event handler for updating category items from main object in AppEngine.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void eh_Category_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+
+                prp_Category_Items = this.AppEngine.CategoryFeatures.Items;
+
+                OnPropertyChanged("Category_Items");
+
+                await Task.Delay(0);
+            });
+        }
 
         #endregion
 

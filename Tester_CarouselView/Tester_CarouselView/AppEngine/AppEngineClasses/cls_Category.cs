@@ -54,6 +54,40 @@ namespace Tester_CarouselView.AppEngine.AppEngineClasses
 
         #endregion
 
+        /// <summary>
+        /// Load stockcards based on category name.
+        /// </summary>
+        public System.Collections.ObjectModel.ObservableCollection<cls_StockCard> GetStockCards()
+        {
+            try
+            {
+
+                System.Collections.ObjectModel.ObservableCollection<cls_StockCard> tmp_Items = null;
+
+                if (Name == string.Empty)
+                {
+                    return new System.Collections.ObjectModel.ObservableCollection<cls_StockCard>();
+                }
+
+                // Load stockcard in single task
+                var task = System.Threading.Tasks.Task.Run(() =>
+                {
+                    tmp_Items = AppEngine.StockCardFeatures.GetStockCardList(this.Name);
+                });
+                task.Wait();
+
+                return tmp_Items;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                // Return empty list in case of error
+                return new System.Collections.ObjectModel.ObservableCollection<cls_StockCard>();
+            }
+        }
+
         #region EVENTS
 
         public event PropertyChangedEventHandler PropertyChanged;

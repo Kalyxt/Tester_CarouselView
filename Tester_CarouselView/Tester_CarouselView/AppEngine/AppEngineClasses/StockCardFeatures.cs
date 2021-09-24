@@ -51,6 +51,41 @@ namespace Tester_CarouselView.AppEngine.AppEngineClasses
         #region PUBLIC METHODS
 
         /// <summary>
+        /// Return stockcards based on the name.
+        /// </summary>
+        public System.Collections.ObjectModel.ObservableCollection<cls_StockCard> GetStockCardList(string u_MenuCategory)
+        {
+
+            System.Collections.ObjectModel.ObservableCollection<cls_StockCard> tmp_StockCardList;
+            tmp_StockCardList = new System.Collections.ObjectModel.ObservableCollection<cls_StockCard>();
+
+            try
+            {
+
+                Console.WriteLine($"GetStockCardList - Category: {u_MenuCategory}");
+
+                foreach (var e_StockCard in this.Items)
+                {
+                    if (string.Compare(e_StockCard.Category, u_MenuCategory) == 0)
+                    {
+                        // Found
+                        tmp_StockCardList.Add(e_StockCard);
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+
+            // Return list
+            return tmp_StockCardList;
+
+        }
+
+        /// <summary>
         /// Load stockCards to list.
         /// </summary>
         public void Load()
@@ -58,8 +93,95 @@ namespace Tester_CarouselView.AppEngine.AppEngineClasses
             try
             {
 
+                if (Items == null)
+                {
+                    this.Items = new ObservableCollection<cls_StockCard>();
+                }
+                else
+                {
+                    this.Items.Clear();
+                }
 
+                cls_StockCard tmp_StockCard;
+                tmp_StockCard = new cls_StockCard(this.AppEngine);
+                tmp_StockCard.Name = "Skoda";
+                tmp_StockCard.Category = "Cars";
+                this.Items.Add(tmp_StockCard);
 
+                tmp_StockCard = new cls_StockCard(this.AppEngine);
+                tmp_StockCard.Name = "Mercedez";
+                tmp_StockCard.Category = "Cars";
+                this.Items.Add(tmp_StockCard);
+
+                tmp_StockCard = new cls_StockCard(this.AppEngine);
+                tmp_StockCard.Name = "Fiat";
+                tmp_StockCard.Category = "Cars";
+                this.Items.Add(tmp_StockCard);
+
+                tmp_StockCard = new cls_StockCard(this.AppEngine);
+                tmp_StockCard.Name = "Lada";
+                tmp_StockCard.Category = "Cars";
+                this.Items.Add(tmp_StockCard);
+
+                tmp_StockCard = new cls_StockCard(this.AppEngine);
+                tmp_StockCard.Name = "Author";
+                tmp_StockCard.Category = "Bikes";
+                this.Items.Add(tmp_StockCard);
+
+                tmp_StockCard = new cls_StockCard(this.AppEngine);
+                tmp_StockCard.Name = "Pyranha";
+                tmp_StockCard.Category = "Bikes";
+                this.Items.Add(tmp_StockCard);
+
+                tmp_StockCard = new cls_StockCard(this.AppEngine);
+                tmp_StockCard.Name = "Shimano";
+                tmp_StockCard.Category = "Bikes";
+                this.Items.Add(tmp_StockCard);
+
+                tmp_StockCard = new cls_StockCard(this.AppEngine);
+                tmp_StockCard.Name = "Elite";
+                tmp_StockCard.Category = "Bikes";
+                this.Items.Add(tmp_StockCard);
+
+                tmp_StockCard = new cls_StockCard(this.AppEngine);
+                tmp_StockCard.Name = "Yamato";
+                tmp_StockCard.Category = "Boats";
+                this.Items.Add(tmp_StockCard);
+
+                tmp_StockCard = new cls_StockCard(this.AppEngine);
+                tmp_StockCard.Name = "Montana";
+                tmp_StockCard.Category = "Boats";
+                this.Items.Add(tmp_StockCard);
+
+                tmp_StockCard = new cls_StockCard(this.AppEngine);
+                tmp_StockCard.Name = "Iowa";
+                tmp_StockCard.Category = "Boats";
+                this.Items.Add(tmp_StockCard);
+
+                tmp_StockCard = new cls_StockCard(this.AppEngine);
+                tmp_StockCard.Name = "Shimakaze";
+                tmp_StockCard.Category = "Boats";
+                this.Items.Add(tmp_StockCard);
+
+                tmp_StockCard = new cls_StockCard(this.AppEngine);
+                tmp_StockCard.Name = "Boeing";
+                tmp_StockCard.Category = "Planes";
+                this.Items.Add(tmp_StockCard);
+
+                tmp_StockCard = new cls_StockCard(this.AppEngine);
+                tmp_StockCard.Name = "Airbus";
+                tmp_StockCard.Category = "Planes";
+                this.Items.Add(tmp_StockCard);
+
+                tmp_StockCard = new cls_StockCard(this.AppEngine);
+                tmp_StockCard.Name = "Falcon 9";
+                tmp_StockCard.Category = "Rockets";
+                this.Items.Add(tmp_StockCard);
+
+                tmp_StockCard = new cls_StockCard(this.AppEngine);
+                tmp_StockCard.Name = "Starship";
+                tmp_StockCard.Category = "Rockets";
+                this.Items.Add(tmp_StockCard);
 
             }
             catch (Exception ex)

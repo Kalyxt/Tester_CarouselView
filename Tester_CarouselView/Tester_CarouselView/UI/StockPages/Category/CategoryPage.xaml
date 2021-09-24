@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Tester_CarouselView.UI.StockViewModels.Category"
 			 x:DataType="local:CategoryViewModel"
              xmlns:AppEngineClasses="clr-namespace:Tester_CarouselView.AppEngine.AppEngineClasses">
-    
+
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" RowSpacing="10" Padding="0,15,0,0">
             <Grid.RowDefinitions>
@@ -23,19 +23,23 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="AppEngineClasses:cls_Category">
-                        <Grid Margin="5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
 
-                            <Label Grid.Row="0" 
-                                   FontSize="15"
-                                   Text="{Binding Name}"
-                                   VerticalOptions="Center"
-                                   HorizontalTextAlignment="Center"
-                                   MaxLines="2"/>
+                                    <Label Grid.Row="0" 
+                                       FontSize="15"
+                                       Text="{Binding Name}"
+                                       VerticalOptions="Center"
+                                       HorizontalTextAlignment="Center"
+                                       MaxLines="2"/>
 
-                        </Grid>
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

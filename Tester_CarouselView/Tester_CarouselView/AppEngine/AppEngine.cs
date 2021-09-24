@@ -55,10 +55,30 @@ namespace Tester_CarouselView.AppEngine
         /// </summary>
         private void Load()
         {
-            // Load category data.
+            // Load categories
             CategoryFeatures.Load();
 
+            // Load stockcards
+            StockCardFeatures.Load();
 
+            // Load StockCards to each Category.
+            Load_CategoryContent();
+        }
+
+        // Load StockCards to each Category.
+        private void Load_CategoryContent()
+        {
+            try
+            {
+                foreach(Tester_CarouselView.AppEngine.AppEngineClasses.cls_Category e_Category in this.CategoryFeatures.Items)
+                {
+                    e_Category.Items = e_Category.GetStockCards();
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         #endregion

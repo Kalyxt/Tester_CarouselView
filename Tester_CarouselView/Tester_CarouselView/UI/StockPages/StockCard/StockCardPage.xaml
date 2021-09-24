@@ -2,12 +2,63 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tester_CarouselView.UI.StockPages.StockCard.StockCardPage"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             xmlns:local="clr-namespace:Tester_CarouselView.UI.StockViewModels.StockCard"
+			 x:DataType="local:StockCardViewModel"
+             xmlns:AppEngineClasses="clr-namespace:Tester_CarouselView.AppEngine.AppEngineClasses">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid HorizontalOptions="FillAndExpand" RowSpacing="10" Padding="0,15,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <!--Categories-->
+            <CarouselView x:Name="fro_CarouselView_Categories"
+                          Grid.Row="0"
+                          ItemsSource="{Binding Category_Items}"
+                          IndicatorView="fro_IndicatorView_Categories"
+                          VerticalScrollBarVisibility="Never" 
+						  HorizontalScrollBarVisibility="Never">
+
+                <CarouselView.ItemTemplate>
+                    <DataTemplate x:DataType="AppEngineClasses:cls_Category">
+                        <!--StockCards-->
+                        <ListView x:Name="fro_Exa_ListView"
+                                  VerticalOptions="FillAndExpand"
+                                  HorizontalOptions="FillAndExpand"
+                                  ItemsSource="{Binding Items}"
+                                  SelectionMode= "None">
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="AppEngineClasses:cls_StockCard">
+                                    <ViewCell>
+                                        <ViewCell.View>
+                                            <Grid x:Name="fro_Grid_FoodMenu" Padding="6,3,5,5">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="70*" />
+                                                    <RowDefinition Height="30*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Grid.Row="0"  FontSize="14" Text="{Binding Name}" HorizontalOptions="Center" VerticalOptions="Center" MaxLines="3"/>
+
+                                            </Grid>
+                                        </ViewCell.View>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <!--Position of the category in list-->
+            <IndicatorView x:Name="fro_IndicatorView_Categories" Grid.Row="1" IndicatorColor="LightGray" SelectedIndicatorColor="Green" HorizontalOptions="Center" />
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
