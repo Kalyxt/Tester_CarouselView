@@ -44,7 +44,7 @@ namespace Tester_CarouselView.AppEngine
 
         private INavigation prp_Navigation;
         /// <summary>
-        /// Systémové rozhranie pre prácu so stránkami - navigácia a akoky medzi stránkami (pages).
+        /// System interface to work with pages.
         /// </summary>
         public INavigation Navigation
         {
@@ -59,9 +59,7 @@ namespace Tester_CarouselView.AppEngine
         }
 
         private AppEngine prp_AppEngine;
-        /// <summary>
-        /// Hlavný objekt programu LUKUL - predstavuje bežiacu inštanciu programu.
-        /// </summary>
+
         public AppEngine AppEngine
         {
             get
@@ -72,7 +70,7 @@ namespace Tester_CarouselView.AppEngine
 
         private enm_Tester_PageNumbers prp_NavigationPage;
         /// <summary>
-        /// Aktuálna NavigationPage aplikácie.
+        /// Current page of application.
         /// </summary>
         public enm_Tester_PageNumbers NavigationPage
         {
@@ -89,7 +87,7 @@ namespace Tester_CarouselView.AppEngine
 
         private Xamarin.Forms.TabbedPage prp_TabbedPage;
         /// <summary>
-        /// Aktuálna TabbedPage aplikácie.
+        /// Current tabPage of application.
         /// </summary>
         public Xamarin.Forms.TabbedPage TabbedPage
         {
@@ -109,7 +107,7 @@ namespace Tester_CarouselView.AppEngine
         #region CONSTRUCTOR
 
         /// <summary>
-        /// Konštruktor.
+        /// Const.
         /// </summary>
         public AppNavigation(AppEngine u_AppEngine)
         {
@@ -134,11 +132,8 @@ namespace Tester_CarouselView.AppEngine
 
         #region METHODS - PUBLIC
 
-
-       
-
         /// <summary>
-        /// Presunie aktívnu stránku na predchádzajúcu stránku (potrebné volať cez await).
+        /// Pops active page.
         /// </summary>
         public System.Threading.Tasks.Task GoBack(bool u_Animated = true)
         {
@@ -159,7 +154,7 @@ namespace Tester_CarouselView.AppEngine
         }
 
         /// <summary>
-        /// Zmena page v NavigationStack-u.
+        /// Change in NavigationStack.
         /// </summary>
         /// <returns></returns>
         public System.Threading.Tasks.Task GoPage(enm_Tester_PageNumbers u_Tester_PageNumber, bool u_Animation = true)
@@ -175,10 +170,10 @@ namespace Tester_CarouselView.AppEngine
 
                             case enm_Tester_PageNumbers.Stock_Categories:
 
-                                // Hlavná stránka pre čašníka
+                                // Main page for stock agenda
                                 if (TabbedPage == null)
                                 {
-                                    // Štandartné spustenie, prvý krát
+                                    // Standard runtime
                                     TabbedPage = new Tester_CarouselView.UI.NavigationPages.StockTabbedPage(this.AppEngine);
                                 }
 

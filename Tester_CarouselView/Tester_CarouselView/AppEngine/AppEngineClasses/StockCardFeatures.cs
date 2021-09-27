@@ -19,7 +19,7 @@ namespace Tester_CarouselView.AppEngine.AppEngineClasses
 
         private AppEngine prp_AppEngine;
         /// <summary>
-        /// Hlavný objekt programu LUKUL - predstavuje bežiacu inštanciu programu.
+        /// Main object of app, contains all data classes.
         /// </summary>
         public AppEngine AppEngine
         {
