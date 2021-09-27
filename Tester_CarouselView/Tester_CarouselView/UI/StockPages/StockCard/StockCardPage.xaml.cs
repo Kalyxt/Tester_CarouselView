@@ -64,6 +64,7 @@ namespace Tester_CarouselView.UI.StockPages.StockCard
                             }
                             else if (Device.RuntimePlatform == Device.iOS)
                             {
+                                // Use position instead of CurrentItem, bcs CurrentItem is not working on IOS.
                                 fro_CarouselView_Categories.Position = tmp_CategoryIndex;
                             }
 
