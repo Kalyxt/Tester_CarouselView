@@ -78,8 +78,8 @@ namespace Tester_CarouselView.AppEngine.AppEngineClasses
 
                 Console.WriteLine("SetCategory: " + u_Category.Name);
 
-                // Vyvolať udalosť   
-                //this.AppEngine.LUKULNavigation.OnUserAction(new LUKUL.AppEngine.AppNavigation.cls_UserActionEventArgs(AppNavigation.cls_UserActionEventArgs.enm_UserAction.SelectMenuCategories));
+                // Invoke event  
+                this.AppEngine.AppNavigation.OnUserAction(new Tester_CarouselView.AppEngine.AppNavigation.cls_UserActionEventArgs(AppNavigation.cls_UserActionEventArgs.enm_UserAction.MenuCategories));
             }
             catch (Exception)
             {

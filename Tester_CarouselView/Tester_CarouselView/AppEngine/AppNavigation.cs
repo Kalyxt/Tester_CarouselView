@@ -122,7 +122,7 @@ namespace Tester_CarouselView.AppEngine
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
 
             }
 
@@ -153,7 +153,7 @@ namespace Tester_CarouselView.AppEngine
                 }
                 catch (Exception ex)
                 {
-
+                    Console.WriteLine(ex.Message);
                 }
             });
         }
@@ -200,13 +200,60 @@ namespace Tester_CarouselView.AppEngine
                 }
                 catch (Exception ex)
                 {
-
+                    Console.WriteLine(ex.Message);
                 }
             });
         }
 
         #endregion
 
+        #region EVENTS
+
+        /// <summary>
+        /// Event is invoked after user action (changing category for instance).
+        /// </summary>
+        public delegate void UserActionEventHandler(cls_UserActionEventArgs u_UserActionEventArgs);
+        public event UserActionEventHandler UserAction;
+
+        public virtual void OnUserAction(cls_UserActionEventArgs u_UserActionEventArgs)
+        {
+            try
+            {
+                UserAction?.Invoke(u_UserActionEventArgs);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        /// <summary>Args for UserAction.</summary>
+        public class cls_UserActionEventArgs : EventArgs
+        {
+
+            public enm_UserAction UserAction { get; set; }
+
+
+            public cls_UserActionEventArgs(enm_UserAction u_UserAction)
+            {
+                this.UserAction = u_UserAction;
+            }
+
+            /// <summary>
+            /// Define user action.
+            /// </summary>
+            public enum enm_UserAction : int
+            {
+
+                /// <summary>No action or cancel previous.</summary>
+                None = 0,
+
+                /// <summary>Category was changed.</summary>
+                MenuCategories = 2,
+
+            }
+        }
+
+        #endregion
 
         #region IDisposable
 
@@ -244,9 +291,6 @@ namespace Tester_CarouselView.AppEngine
         }
 
         #endregion
-
-        
-
 
     }
 }

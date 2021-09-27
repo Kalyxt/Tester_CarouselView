@@ -22,8 +22,13 @@ namespace Tester_CarouselView.UI.StockPages.StockCard
 
         private Tester_CarouselView.AppEngine.AppEngine _AppEngine = null;
 
+
         #endregion
 
+        /// <summary>
+        /// Const.
+        /// </summary>
+        /// <param name="u_AppEngine"></param>
         public StockCardPage(Tester_CarouselView.AppEngine.AppEngine u_AppEngine)
         {
             InitializeComponent();
@@ -33,45 +38,60 @@ namespace Tester_CarouselView.UI.StockPages.StockCard
             _StockCardViewModel = new StockViewModels.StockCard.StockCardViewModel(this,_AppEngine);
 
             this.BindingContext = _StockCardViewModel;
+
+            _AppEngine.AppNavigation.UserAction += eh_UserActions;
+        }
+
+        /// <summary>
+        /// Event is invoked after user action (changing category for instance).
+        /// </summary>
+        void eh_UserActions(Tester_CarouselView.AppEngine.AppNavigation.cls_UserActionEventArgs u_UserActionEventArgs)
+        {
+            try
+            {
+                if (u_UserActionEventArgs.UserAction == AppEngine.AppNavigation.cls_UserActionEventArgs.enm_UserAction.MenuCategories)
+                {
+                    // Set selected category
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        int tmp_CategoryIndex = _AppEngine.CategoryFeatures.Items.IndexOf(_AppEngine.CategoryFeatures.SelectedCategory);
+                        if (tmp_CategoryIndex >= 0)
+                        {
+                            fro_CarouselView_Categories.IsScrollAnimated = false;
+                            if (Device.RuntimePlatform == Device.Android)
+                            {
+                                fro_CarouselView_Categories.CurrentItem = _AppEngine.CategoryFeatures.Items[tmp_CategoryIndex];
+                            }
+                            else if (Device.RuntimePlatform == Device.iOS)
+                            {
+                                fro_CarouselView_Categories.Position = tmp_CategoryIndex;
+                            }
+
+                            _StockCardViewModel.OnPropertyChanged("ActiveCategoryName");
+                        }
+
+                        await Task.Delay(0);
+                    });
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            try
-            {
-
-                // Set selected category
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    int tmp_CategoryIndex = _AppEngine.CategoryFeatures.Items.IndexOf(_AppEngine.CategoryFeatures.SelectedCategory);
-                    if (tmp_CategoryIndex >= 0)
-                    {
-                        fro_CarouselView_Categories.IsScrollAnimated = false;
-                        if (Device.RuntimePlatform == Device.Android)
-                        {
-                            fro_CarouselView_Categories.CurrentItem = _AppEngine.CategoryFeatures.Items[tmp_CategoryIndex];
-                        }
-                        else if (Device.RuntimePlatform == Device.iOS)
-                        {
-                            fro_CarouselView_Categories.Position = tmp_CategoryIndex;
-                        }
-
-                        _StockCardViewModel.OnPropertyChanged("ActiveCategoryName");
-                    }
-
-                    await Task.Delay(0);
-                });
-
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine(ex.Message);
-            }
         }
 
+        /// <summary>
+        /// Item in StockCard Categories was changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void fro_CarouselView_Categories_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
         {
             try
@@ -102,7 +122,7 @@ namespace Tester_CarouselView.UI.StockPages.StockCard
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -122,7 +142,8 @@ namespace Tester_CarouselView.UI.StockPages.StockCard
 
                     }
 
-                    // Odmapovať eventy
+                    // Unmap events
+                    _AppEngine.AppNavigation.UserAction -= eh_UserActions;
                 }
                 catch (Exception ex)
                 {
